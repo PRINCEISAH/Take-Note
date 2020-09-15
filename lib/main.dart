@@ -2,19 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:todo/HomePage/HomeScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final storePath = await getApplicationDocumentsDirectory();
-  await Hive.initFlutter(storePath.path);
-  var firstbox = await Hive.openBox("firstbox");
-  var StudentBox = await Hive.openBox("studentBox");
-  firstbox.put("name", "wordpress");
-
-  print(firstbox.values);
-  print(firstbox.name);
   runApp(MyApp());
-  print(storePath.path);
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +19,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HomePage());
+        home: HomeScreen());
   }
 }
 
