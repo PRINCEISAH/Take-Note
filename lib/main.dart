@@ -8,6 +8,7 @@ import 'package:todo/provider/note_changeNotifier.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // i am back
   runApp(ChangeNotifierProvider(
       create: (_) => Note_Change_Notifier(), child: MyApp()));
 }
