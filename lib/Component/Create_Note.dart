@@ -8,14 +8,27 @@ import 'package:todo/Model/model.dart';
 import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
 
-class CreateNote extends StatelessWidget {
+class CreateNote extends StatefulWidget {
+  @override
+  _CreateNoteState createState() => _CreateNoteState();
+}
+
+class _CreateNoteState extends State<CreateNote> {
   TextEditingController titleController = TextEditingController();
+
   TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     List<Color> BoxColors = [OrangeColor, GreenColor, lightBlue, PinkColor];
     final prov = Provider.of<Note_Change_Notifier>(context);
+
+    Color color;
+
+    Color selectColor(int index) {
+      return BoxColors[index];
+    }
+
     return Container(
       height: Getproprateheight(265),
       width: Getpropratewidth(335),
@@ -56,6 +69,7 @@ class CreateNote extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           prov.AddNotes(NoteModel(
+                              borderColor: Colors.green,
                               title: titleController.text,
                               Text: textController.text));
 
@@ -170,8 +184,13 @@ class CreateNote extends StatelessWidget {
                   Row(
                     children: List.generate(
                         BoxColors.length,
-                        (index) => ColorsSelect(
-                              color: BoxColors[index],
+                        (index) => InkWell(
+                              onTap: () {
+                                print("$index");
+                              },
+                              child: ColorsSelect(
+                                color: BoxColors[index],
+                              ),
                             )),
                   ),
                   InkWell(

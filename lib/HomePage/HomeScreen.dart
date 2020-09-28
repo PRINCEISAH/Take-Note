@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Color/Colors.dart';
 import 'package:todo/Component/Bottom_Sheet_add_note.dart';
@@ -7,6 +9,8 @@ import 'package:todo/Component/Note.dart';
 import 'package:todo/Component/searchBox.dart';
 import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
+
+import '../Color/Colors.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -47,6 +51,7 @@ class Screen extends StatelessWidget {
             child: Note(
               title: "coreteam meeting",
               text: "with d lead and others",
+              color: Colors.red,
             ),
           ),
           Column(
@@ -54,9 +59,22 @@ class Screen extends StatelessWidget {
                 prov.notes.length,
                 (index) => Padding(
                       padding: const EdgeInsets.only(top: 20),
-                      child: Note(
-                        title: prov.notes[index].title,
-                        text: prov.notes[index].Text,
+                      child: Slidable(
+                        actionPane: SlidableBehindActionPane(),
+                        actionExtentRatio: 0.20,
+                        secondaryActions: [
+                          IconSlideAction(
+                            caption: "Delete",
+                            color: BackgroundColor,
+                            iconWidget: SvgPicture.asset("images/delete.svg"),
+                            onTap: () => prov.deletNote(index),
+                          )
+                        ],
+                        child: Note(
+                          title: prov.notes[index].title,
+                          text: prov.notes[index].Text,
+                          color: prov.notes[index].borderColor,
+                        ),
                       ),
                     )),
           )

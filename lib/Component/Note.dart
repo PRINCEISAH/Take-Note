@@ -6,14 +6,15 @@ import 'package:todo/SizeConfig/SizeConfig.dart';
 class Note extends StatelessWidget {
   final String text;
   final String title;
-
-  const Note({Key key, this.text, this.title}) : super(key: key);
+  final Color color;
+  const Note({Key key, this.text, this.color, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       height: Getproprateheight(100),
       width: Getpropratewidth(335),
+      decoration:
+          BoxDecoration(border: Border.all(color: color), color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

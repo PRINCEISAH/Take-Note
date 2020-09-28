@@ -8,4 +8,9 @@ class Note_Change_Notifier extends ChangeNotifier {
   void AddNotes(NoteModel model) {
     _notes.add(model);
   }
+
+  void deletNote(int index) {
+    _notes.removeAt(index);
+    notifyListeners();
+  }
 }
