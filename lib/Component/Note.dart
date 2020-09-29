@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:todo/Color/Colors.dart';
 import 'package:todo/SizeConfig/SizeConfig.dart';
 
@@ -7,7 +8,9 @@ class Note extends StatelessWidget {
   final String text;
   final String title;
   final Color color;
-  const Note({Key key, this.text, this.color, this.title}) : super(key: key);
+  final dateTime;
+  const Note({Key key, this.dateTime, this.text, this.color, this.title})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +33,7 @@ class Note extends StatelessWidget {
                       color: Color(0xff4F55A1),
                       fontWeight: FontWeight.bold),
                 ),
-                Text("Today")
+                Text("${dateTime}")
               ],
             ),
           ),

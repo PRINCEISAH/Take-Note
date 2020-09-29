@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Color/Colors.dart';
 import 'package:todo/Component/Bottom_Sheet_add_note.dart';
@@ -71,6 +72,7 @@ class Screen extends StatelessWidget {
                           )
                         ],
                         child: Note(
+                          dateTime: DateFormat.yMMMEd().format(DateTime.now()),
                           title: prov.notes[index].title,
                           text: prov.notes[index].Text,
                           color: prov.notes[index].borderColor,

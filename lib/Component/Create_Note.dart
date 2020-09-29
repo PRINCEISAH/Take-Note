@@ -7,6 +7,7 @@ import 'package:todo/Component/FullCreatNote.dart';
 import 'package:todo/Model/model.dart';
 import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
+import 'package:intl/intl.dart';
 
 class CreateNote extends StatefulWidget {
   @override
@@ -71,6 +72,7 @@ class _CreateNoteState extends State<CreateNote> {
                           prov.AddNotes(NoteModel(
                               borderColor: Colors.green,
                               title: titleController.text,
+                              date: DateTime.now(),
                               Text: textController.text));
 
                           textController.clear();
