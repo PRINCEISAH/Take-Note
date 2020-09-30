@@ -9,6 +9,9 @@ import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
 import 'package:intl/intl.dart';
 
+import '../Model/model.dart';
+import '../Model/model.dart';
+
 class CreateNote extends StatefulWidget {
   @override
   _CreateNoteState createState() => _CreateNoteState();
@@ -48,7 +51,7 @@ class _CreateNoteState extends State<CreateNote> {
                   child: Container(
                     height: Getproprateheight(28),
                     child: TextField(
-                      controller: titleController,
+                      controller: prov.gettextcontroller,
                       decoration: InputDecoration(
                           hintText: 'Title',
                           border:
@@ -188,7 +191,9 @@ class _CreateNoteState extends State<CreateNote> {
                         BoxColors.length,
                         (index) => InkWell(
                               onTap: () {
-                                print("$index");
+                                prov.addbodercolor(to_do_selection(
+                                    color: BoxColors[index],
+                                    Selection: "Agender"));
                               },
                               child: ColorsSelect(
                                 color: BoxColors[index],

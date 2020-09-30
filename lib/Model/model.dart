@@ -5,5 +5,12 @@ class NoteModel {
   final Text;
   final Color borderColor;
   final DateTime date;
-  NoteModel({this.title, this.date, this.Text, this.borderColor});
+  final to_do_selection select;
+  NoteModel({this.title, this.select, this.date, this.Text, this.borderColor});
+}
+
+class to_do_selection {
+  final String Selection;
+  final Color color;
+  to_do_selection({this.Selection, this.color});
 }

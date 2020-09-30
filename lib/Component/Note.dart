@@ -8,16 +8,19 @@ class Note extends StatelessWidget {
   final String text;
   final String title;
   final Color color;
+  final String section;
   final dateTime;
-  const Note({Key key, this.dateTime, this.text, this.color, this.title})
+  const Note(
+      {Key key, this.section, this.dateTime, this.text, this.color, this.title})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
       height: Getproprateheight(100),
       width: Getpropratewidth(335),
-      decoration:
-          BoxDecoration(border: Border.all(color: color), color: Colors.white),
+      decoration: BoxDecoration(
+          border: Border.all(color: color ?? Colors.orange),
+          color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,7 +36,11 @@ class Note extends StatelessWidget {
                       color: Color(0xff4F55A1),
                       fontWeight: FontWeight.bold),
                 ),
-                Text("${dateTime}")
+                Text("${dateTime}",
+                    style: GoogleFonts.karla(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xff4F55A1)))
               ],
             ),
           ),
@@ -42,10 +49,16 @@ class Note extends StatelessWidget {
             child: Text("${text}"),
           ),
           Spacer(),
-          Container(
-            height: Getproprateheight(19),
-            width: Getpropratewidth(52),
-            decoration: BoxDecoration(color: OrangeColor),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              height: Getproprateheight(19),
+              width: Getpropratewidth(52),
+              decoration: BoxDecoration(color: color),
+              child: Center(
+                child: Text("${section}"),
+              ),
+            ),
           )
         ],
       ),

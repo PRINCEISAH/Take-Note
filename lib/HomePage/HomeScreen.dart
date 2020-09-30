@@ -12,6 +12,7 @@ import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
 
 import '../Color/Colors.dart';
+import '../Component/FullCreatNote.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -58,24 +59,29 @@ class Screen extends StatelessWidget {
           Column(
             children: List.generate(
                 prov.notes.length,
-                (index) => Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Slidable(
-                        actionPane: SlidableBehindActionPane(),
-                        actionExtentRatio: 0.20,
-                        secondaryActions: [
-                          IconSlideAction(
-                            caption: "Delete",
-                            color: BackgroundColor,
-                            iconWidget: SvgPicture.asset("images/delete.svg"),
-                            onTap: () => prov.deletNote(index),
-                          )
-                        ],
-                        child: Note(
-                          dateTime: DateFormat.yMMMEd().format(DateTime.now()),
-                          title: prov.notes[index].title,
-                          text: prov.notes[index].Text,
-                          color: prov.notes[index].borderColor,
+                (index) => InkWell(
+                      onTap: () => Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => FullNote())),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Slidable(
+                          actionPane: SlidableBehindActionPane(),
+                          actionExtentRatio: 0.20,
+                          secondaryActions: [
+                            IconSlideAction(
+                              caption: "Delete",
+                              color: BackgroundColor,
+                              iconWidget: SvgPicture.asset("images/delete.svg"),
+                              onTap: () => prov.deletNote(index),
+                            )
+                          ],
+                          child: Note(
+                            dateTime: DateFormat.MMMd().format(DateTime.now()),
+                            title: prov.notes[index].title,
+                            text: prov.notes[index].Text,
+                            color: prov.notes[index].select.color,
+                            section: prov.notes[index].select.Selection,
+                          ),
                         ),
                       ),
                     )),
