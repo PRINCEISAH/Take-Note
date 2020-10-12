@@ -90,7 +90,7 @@ class _CreateNoteState extends State<CreateNote> {
                               width: Getpropratewidth(3),
                             ),
                             Text(
-                              "Add Tag",
+                              "Save",
                               style: GoogleFonts.karla(
                                   fontSize: 10, color: Color(0xffFDFCFC)),
                             )
