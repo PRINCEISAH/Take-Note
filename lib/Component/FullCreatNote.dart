@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/Component/Create_Note.dart';
+import 'package:todo/SizeConfig/SizeConfig.dart';
 
 class FullNote extends StatelessWidget {
   @override
@@ -15,7 +16,12 @@ class FullNoteBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        children: [CreateNote()],
+        children: [
+          SizedBox(
+            height: Getproprateheight(20),
+          ),
+          CreateNote()
+        ],
       ),
     );
   }
