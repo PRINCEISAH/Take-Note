@@ -14,7 +14,7 @@ class Note extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Getproprateheight(100),
+      height: Getproprateheight(120),
       width: Getpropratewidth(335),
       decoration:
           BoxDecoration(border: Border.all(color: color), color: Colors.white),
@@ -33,13 +33,23 @@ class Note extends StatelessWidget {
                       color: Color(0xff4F55A1),
                       fontWeight: FontWeight.bold),
                 ),
-                Text("${dateTime}")
+                Text("${dateTime}",
+                    style: GoogleFonts.karla(
+                        fontSize: 14,
+                        color: Color(0xff4F55A1),
+                        fontWeight: FontWeight.bold))
               ],
             ),
           ),
           Container(
+            height: Getproprateheight(30),
             margin: EdgeInsets.only(left: 16, right: 76),
-            child: Text("${text}"),
+            child: Text(
+              "${text}",
+              style:
+                  GoogleFonts.karla(fontSize: 13, fontWeight: FontWeight.w400),
+              maxLines: 2,
+            ),
           ),
           Spacer(),
           Container(

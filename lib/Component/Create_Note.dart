@@ -69,15 +69,22 @@ class _CreateNoteState extends State<CreateNote> {
                       },
                       child: InkWell(
                         onTap: () {
-                          prov.AddNotes(NoteModel(
-                              borderColor: Colors.green,
-                              title: titleController.text,
-                              date: DateTime.now(),
-                              Text: textController.text));
+                          if (textController.text.isEmpty &&
+                              titleController.text.isEmpty)
+                            return Scaffold.of(context).showSnackBar(SnackBar(
+                                content:
+                                    Text("Title and Text cannot be empty")));
+                          else {
+                            prov.AddNotes(NoteModel(
+                                borderColor: Colors.green,
+                                title: titleController.text,
+                                date: DateTime.now(),
+                                Text: textController.text));
 
-                          textController.clear();
-                          titleController.clear();
-                          Navigator.pop(context);
+                            textController.clear();
+                            titleController.clear();
+                            Navigator.pop(context);
+                          }
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

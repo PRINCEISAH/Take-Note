@@ -7,25 +7,13 @@ import 'package:todo/Component/Create_Note.dart';
 import 'package:todo/Model/model.dart';
 import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
+import 'package:todo/widget/appbar.dart';
 
 class FullNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: SvgPicture.asset(
-          "images/back.svg",
-          fit: BoxFit.scaleDown,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: SvgPicture.asset("images/menu.svg"),
-          )
-        ],
-      ),
+      appBar: AppBarTop(),
       body: ListView(
         children: [FullNoteBody()],
       ),
@@ -108,15 +96,22 @@ class _CreateFullNoteState extends State<CreateFullNote> {
                       },
                       child: InkWell(
                         onTap: () {
-                          prov.AddNotes(NoteModel(
-                              borderColor: Colors.green,
-                              title: titleController.text,
-                              date: DateTime.now(),
-                              Text: textController.text));
+                          if (textController.text.isEmpty &&
+                              titleController.text.isEmpty)
+                            return Scaffold.of(context).showSnackBar(SnackBar(
+                                content:
+                                    Text("Title and Text cannot be empty")));
+                          else {
+                            prov.AddNotes(NoteModel(
+                                borderColor: Colors.green,
+                                title: titleController.text,
+                                date: DateTime.now(),
+                                Text: textController.text));
 
-                          textController.clear();
-                          titleController.clear();
-                          Navigator.pop(context);
+                            textController.clear();
+                            titleController.clear();
+                            Navigator.pop(context);
+                          }
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -13,4 +13,6 @@ class Note_Change_Notifier extends ChangeNotifier {
     _notes.removeAt(index);
     notifyListeners();
   }
+
+  void editNote(int index) {}
 }
