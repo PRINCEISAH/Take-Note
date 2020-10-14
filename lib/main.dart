@@ -9,9 +9,13 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // i am back
-  runApp(ChangeNotifierProvider(
-      create: (_) => Note_Change_Notifier(), child: MyApp()));
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => Note_Change_Notifier(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
