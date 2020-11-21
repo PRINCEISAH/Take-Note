@@ -19,7 +19,7 @@ class ViewFullNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarTop(),
+      appBar: AppBarTop(context),
       body: ViewFullNoteBody(
         eText: Text,
         eTitle: title,
@@ -63,10 +63,9 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      flex: 4,
                       child: Container(
-                        height: Getproprateheight(28),
                         child: TextField(
+                          maxLines: 2,
                           controller:
                               TextEditingController(text: widget.eTitle),
                           decoration: InputDecoration(
@@ -93,23 +92,15 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                           },
                           child: InkWell(
                             onTap: () {
-                              if (textController.text.isEmpty &&
-                                  titleController.text.isEmpty)
-                                return Scaffold.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text(
-                                            "Title and Text cannot be empty")));
-                              else {
-                                prov.AddNotes(NoteModel(
-                                    borderColor: Colors.green,
-                                    title: titleController.text,
-                                    date: DateTime.now(),
-                                    Text: textController.text));
+                              prov.AddNotes(NoteModel(
+                                  borderColor: Colors.green,
+                                  title: titleController.text,
+                                  date: DateTime.now(),
+                                  Text: textController.text));
 
-                                textController.clear();
-                                titleController.clear();
-                                Navigator.pop(context);
-                              }
+                              textController.clear();
+                              titleController.clear();
+                              Navigator.pop(context);
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

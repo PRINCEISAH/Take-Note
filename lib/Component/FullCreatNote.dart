@@ -13,9 +13,11 @@ class FullNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarTop(),
+      appBar: AppBarTop(context),
       body: ListView(
-        children: [FullNoteBody()],
+        children: [
+          FullNoteBody(),
+        ],
       ),
     );
   }
@@ -69,7 +71,6 @@ class _CreateFullNoteState extends State<CreateFullNote> {
                 Expanded(
                   flex: 4,
                   child: Container(
-                    height: Getproprateheight(28),
                     child: TextField(
                       controller: titleController,
                       decoration: InputDecoration(

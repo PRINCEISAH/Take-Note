@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-Widget AppBarTop() {
+Widget AppBarTop(BuildContext context) {
   return AppBar(
     elevation: 0,
     backgroundColor: Colors.white,
-    leading: SvgPicture.asset(
-      "images/back.svg",
-      fit: BoxFit.scaleDown,
+    leading: InkWell(
+      onTap: () {
+        print("back");
+        Navigator.pop(context);
+      },
+      child: SvgPicture.asset(
+        "images/back.svg",
+        fit: BoxFit.scaleDown,
+      ),
     ),
     actions: [
       Padding(

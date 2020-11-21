@@ -26,12 +26,17 @@ class Note extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "${title}",
-                  style: GoogleFonts.karla(
-                      fontSize: 16,
-                      color: Color(0xff4F55A1),
-                      fontWeight: FontWeight.bold),
+                Container(
+                  width: Getpropratewidth(180),
+                  child: Text(
+                    "${title}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: GoogleFonts.karla(
+                        fontSize: 16,
+                        color: Color(0xff4F55A1),
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Text("${dateTime}",
                     style: GoogleFonts.karla(
@@ -46,6 +51,7 @@ class Note extends StatelessWidget {
             margin: EdgeInsets.only(left: 16, right: 76),
             child: Text(
               "${text}",
+              overflow: TextOverflow.ellipsis,
               style:
                   GoogleFonts.karla(fontSize: 13, fontWeight: FontWeight.w400),
               maxLines: 2,

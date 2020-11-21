@@ -46,6 +46,7 @@ class _CreateNoteState extends State<CreateNote> {
                 Expanded(
                   flex: 4,
                   child: Container(
+                    width: Getpropratewidth(100),
                     height: Getproprateheight(28),
                     child: TextField(
                       controller: titleController,
