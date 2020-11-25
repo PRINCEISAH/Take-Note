@@ -15,8 +15,8 @@ class Note extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Getproprateheight(120),
-      width: Getpropratewidth(335),
+      height: GetHeight(120),
+      width: Getwidth(335),
       decoration:
           BoxDecoration(border: Border.all(color: color), color: Colors.white),
       child: Column(
@@ -28,7 +28,7 @@ class Note extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: Getpropratewidth(180),
+                  width: Getwidth(180),
                   child: Text(
                     "${title}",
                     overflow: TextOverflow.ellipsis,
@@ -48,7 +48,7 @@ class Note extends StatelessWidget {
             ),
           ),
           Container(
-            height: Getproprateheight(30),
+            height: GetHeight(30),
             margin: EdgeInsets.only(left: 16, right: 76),
             child: Text(
               "${text}",
@@ -66,8 +66,8 @@ class Note extends StatelessWidget {
               print(todobox.values);
             },
             child: Container(
-              height: Getproprateheight(19),
-              width: Getpropratewidth(52),
+              height: GetHeight(19),
+              width: Getwidth(52),
               decoration: BoxDecoration(color: OrangeColor),
             ),
           )

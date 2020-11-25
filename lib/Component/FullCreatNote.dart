@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Color/Colors.dart';
 import 'package:todo/Component/Create_Note.dart';
@@ -49,6 +50,11 @@ class _CreateFullNoteState extends State<CreateFullNote> {
     List<Color> BoxColors = [OrangeColor, GreenColor, lightBlue, PinkColor];
     final prov = Provider.of<Note_Change_Notifier>(context);
 
+    void addtodo(NoteModel note) {
+      Box todobox = Hive.box("todo");
+      todobox.add(note);
+    }
+
     Color color;
 
     Color selectColor(int index) {
@@ -86,8 +92,8 @@ class _CreateFullNoteState extends State<CreateFullNote> {
                 ),
                 Expanded(
                   child: Container(
-                    height: Getproprateheight(20.77),
-                    width: Getpropratewidth(75),
+                    height: GetHeight(20.77),
+                    width: Getwidth(75),
                     decoration: BoxDecoration(
                         color: SkyBlueTagColor,
                         borderRadius: BorderRadius.circular(10)),
@@ -103,7 +109,7 @@ class _CreateFullNoteState extends State<CreateFullNote> {
                                 content:
                                     Text("Title and Text cannot be empty")));
                           else {
-                            prov.AddNotes(NoteModel(
+                            prov.addtodo(NoteModel(
                                 title: titleController.text,
                                 date: DateTime.now(),
                                 Text: textController.text));
@@ -118,7 +124,7 @@ class _CreateFullNoteState extends State<CreateFullNote> {
                           children: [
                             SvgPicture.asset("images/plus.svg"),
                             SizedBox(
-                              width: Getpropratewidth(3),
+                              width: Getwidth(3),
                             ),
                             Text(
                               "Save",
@@ -134,19 +140,17 @@ class _CreateFullNoteState extends State<CreateFullNote> {
               ],
             ),
             SizedBox(
-              height: Getproprateheight(12),
+              height: GetHeight(12),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  height: Getproprateheight(20),
-                  width: Getpropratewidth(70),
                   child: Row(
                     children: [
                       SvgPicture.asset("images/note.svg"),
                       SizedBox(
-                        width: Getproprateheight(4),
+                        width: GetHeight(4),
                       ),
                       Text(
                         "Simple",
@@ -163,16 +167,14 @@ class _CreateFullNoteState extends State<CreateFullNote> {
               ],
             ),
             SizedBox(
-              height: Getproprateheight(12),
+              height: GetHeight(12),
             ),
             Container(
-              height: Getproprateheight(20),
-              width: Getpropratewidth(70),
               child: Row(
                 children: [
                   SvgPicture.asset("images/checkbox.svg"),
                   SizedBox(
-                    width: Getproprateheight(4),
+                    width: GetHeight(4),
                   ),
                   Text(
                     "To-do",
@@ -185,16 +187,14 @@ class _CreateFullNoteState extends State<CreateFullNote> {
               ),
             ),
             SizedBox(
-              height: Getproprateheight(12),
+              height: GetHeight(12),
             ),
             Container(
-              height: Getproprateheight(20),
-              width: Getpropratewidth(70),
               child: Row(
                 children: [
                   SvgPicture.asset("images/bulletlist.svg"),
                   SizedBox(
-                    width: Getproprateheight(4),
+                    width: GetHeight(4),
                   ),
                   Text("Agenda",
                       style: GoogleFonts.karla(
@@ -205,7 +205,7 @@ class _CreateFullNoteState extends State<CreateFullNote> {
               ),
             ),
             SizedBox(
-              height: Getproprateheight(20),
+              height: GetHeight(20),
             ),
             Expanded(
               flex: 6,
@@ -254,8 +254,8 @@ class FullColorsSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Getproprateheight(41),
-      width: Getpropratewidth(41),
+      height: GetHeight(41),
+      width: Getwidth(41),
       decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }

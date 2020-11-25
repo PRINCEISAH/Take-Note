@@ -5,9 +5,13 @@ import 'package:todo/Model/model.dart';
 class Note_Change_Notifier extends ChangeNotifier {
   final Todobox = Hive.box("todo");
 
-  void AddNotes(NoteModel model) {}
+  void addtodo(NoteModel note) {
+    Box todobox = Hive.box("todo");
+    todobox.add(note);
+    notifyListeners();
+  }
 
-  void deletNote(int index) {
+  void deleteNote(int index) {
     Todobox.deleteAt(index);
     notifyListeners();
   }
@@ -15,5 +19,6 @@ class Note_Change_Notifier extends ChangeNotifier {
   void editNote(int index, NoteModel note) {
     Todobox.putAt(index, note);
     print(Todobox.values);
+    notifyListeners();
   }
 }

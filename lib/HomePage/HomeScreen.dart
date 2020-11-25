@@ -48,11 +48,11 @@ class Screen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: Getproprateheight(50),
+                      height: GetHeight(50),
                     ),
                     SearchBox(),
                     SizedBox(
-                      height: Getproprateheight(10),
+                      height: GetHeight(10),
                     ),
                     Categories(),
                     SizedBox(
@@ -70,18 +70,16 @@ class Screen extends StatelessWidget {
                       children: List.generate(
                           todoBox.length,
                           (index) => InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ViewFullNote(
-                                                index: index,
-                                                title:
-                                                    todoBox.getAt(index).title,
-                                                Text: todoBox.getAt(index).Text,
-                                              )));
-                                },
-                                child: Padding(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ViewFullNote(
+                                              index: index,
+                                            )));
+                              },
+                              child: Builder(
+                                builder: (context) => Padding(
                                   padding: const EdgeInsets.only(top: 20),
                                   child: Slidable(
                                     actionPane: SlidableBehindActionPane(),
@@ -92,7 +90,15 @@ class Screen extends StatelessWidget {
                                         color: BackgroundColor,
                                         iconWidget: SvgPicture.asset(
                                             "images/delete.svg"),
-                                        onTap: () => prov.deletNote(index),
+                                        onTap: () => {
+                                          Scaffold.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text("deleted"),
+                                            duration: Duration(seconds: 2),
+                                          )),
+                                          prov.deleteNote(index),
+                                          print("deleted")
+                                        },
                                       )
                                     ],
                                     child: Note(
@@ -104,7 +110,7 @@ class Screen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              )),
+                              ))),
                     ),
                   ],
                 ),

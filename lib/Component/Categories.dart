@@ -10,8 +10,8 @@ class Categories extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(),
       child: Container(
-        height: Getproprateheight(61),
-        width: Getpropratewidth(321),
+        height: GetHeight(61),
+        width: Getwidth(321),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [AllCard(), ToDoCard(), AgendaCard()],
@@ -25,8 +25,8 @@ class AllCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: Getproprateheight(61),
-        width: Getpropratewidth(80),
+        height: GetHeight(61),
+        width: Getwidth(80),
         decoration: BoxDecoration(
             color: OrangeColor, borderRadius: BorderRadius.circular(10)),
         child: Column(
@@ -56,8 +56,8 @@ class ToDoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: Getproprateheight(61),
-        width: Getpropratewidth(99),
+        height: GetHeight(61),
+        width: Getwidth(99),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Column(
@@ -87,8 +87,8 @@ class AgendaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: Getproprateheight(61),
-        width: Getpropratewidth(112),
+        height: GetHeight(61),
+        width: Getwidth(112),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Column(

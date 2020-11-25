@@ -13,43 +13,45 @@ import 'package:todo/provider/note_changeNotifier.dart';
 import 'package:todo/widget/appbar.dart';
 
 class ViewFullNote extends StatelessWidget {
-  final Text;
-  final title;
   final int index;
-  const ViewFullNote({Key key, this.index, this.Text, this.title})
-      : super(key: key);
+  const ViewFullNote({
+    Key key,
+    this.index,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarTop(context),
       body: ViewFullNoteBody(
         index: index,
-        eText: Text,
-        eTitle: title,
       ),
     );
   }
 }
 
 class ViewFullNoteBody extends StatefulWidget {
-  final String eText;
-  final String eTitle;
   final int index;
-  const ViewFullNoteBody({Key key, this.index, this.eText, this.eTitle})
-      : super(key: key);
+  const ViewFullNoteBody({
+    Key key,
+    this.index,
+  }) : super(key: key);
 
   @override
   _ViewFullNoteBodyState createState() => _ViewFullNoteBodyState();
 }
 
 class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
-  TextEditingController titleController = TextEditingController();
-
-  TextEditingController textController = TextEditingController();
+  final todobox = Hive.box('todo');
 
   @override
   Widget build(BuildContext context) {
+    var todoindexbox = todobox.getAt(widget.index) as NoteModel;
+
     final prov = Provider.of<Note_Change_Notifier>(context);
+    TextEditingController titleController =
+        TextEditingController(text: todoindexbox.title);
+    TextEditingController textController =
+        TextEditingController(text: todoindexbox.Text);
 
     return ListView(
       children: [
@@ -70,8 +72,7 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                       child: Container(
                         child: TextField(
                           maxLines: 2,
-                          controller:
-                              TextEditingController(text: widget.eTitle),
+                          controller: titleController,
                           decoration: InputDecoration(
                               hintText: '${titleController.text}',
                               hintStyle: GoogleFonts.karla(
@@ -90,42 +91,37 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                               widget.index,
                               NoteModel(
                                   date: DateTime.now(),
-                                  title: "hello",
-                                  Text: "isah"));
-                          var box = Hive.box("todo");
-                          print(box.getAt(0).title);
-
-                          print(box.length);
+                                  title: titleController.text,
+                                  Text: textController.text));
+                          print("saved");
                         },
                         child: Container(
-                          height: Getproprateheight(20.77),
-                          width: Getpropratewidth(75),
+                          height: GetHeight(20.77),
+                          width: Getwidth(75),
                           decoration: BoxDecoration(
                               color: SkyBlueTagColor,
                               borderRadius: BorderRadius.circular(10)),
-                          child: InkWell(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset("images/plus.svg"),
-                                SizedBox(
-                                  width: Getpropratewidth(3),
-                                ),
-                                Text(
-                                  "Save",
-                                  style: GoogleFonts.karla(
-                                      fontSize: 10, color: Color(0xffFDFCFC)),
-                                )
-                              ],
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset("images/plus.svg"),
+                              SizedBox(
+                                width: Getwidth(3),
+                              ),
+                              Text(
+                                "Save",
+                                style: GoogleFonts.karla(
+                                    fontSize: 10, color: Color(0xffFDFCFC)),
+                              )
+                            ],
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 SizedBox(
-                  height: Getproprateheight(12),
+                  height: GetHeight(12),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,7 +131,7 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                         children: [
                           SvgPicture.asset("images/note.svg"),
                           SizedBox(
-                            width: Getproprateheight(4),
+                            width: GetHeight(4),
                           ),
                           Container(
                             child: Text(
@@ -155,15 +151,15 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                   ],
                 ),
                 SizedBox(
-                  height: Getproprateheight(12),
+                  height: GetHeight(12),
                 ),
                 Container(
-                  height: Getproprateheight(20),
+                  height: GetHeight(20),
                   child: Row(
                     children: [
                       SvgPicture.asset("images/checkbox.svg"),
                       SizedBox(
-                        width: Getproprateheight(4),
+                        width: GetHeight(4),
                       ),
                       Text(
                         "To-do",
@@ -176,16 +172,16 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                   ),
                 ),
                 SizedBox(
-                  height: Getproprateheight(12),
+                  height: GetHeight(12),
                 ),
                 Container(
-                  height: Getproprateheight(20),
-                  width: Getpropratewidth(70),
+                  height: GetHeight(20),
+                  width: Getwidth(70),
                   child: Row(
                     children: [
                       SvgPicture.asset("images/bulletlist.svg"),
                       SizedBox(
-                        width: Getproprateheight(4),
+                        width: GetHeight(4),
                       ),
                       Text("Agenda",
                           style: GoogleFonts.karla(
@@ -196,14 +192,14 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                   ),
                 ),
                 SizedBox(
-                  height: Getproprateheight(20),
+                  height: GetHeight(20),
                 ),
                 Expanded(
                   flex: 6,
                   child: Container(
                     child: TextField(
                         maxLines: 400,
-                        controller: TextEditingController(text: widget.eText),
+                        controller: textController,
                         decoration: new InputDecoration(
                             border:
                                 OutlineInputBorder(borderSide: BorderSide.none),

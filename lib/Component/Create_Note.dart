@@ -22,11 +22,6 @@ class _CreateNoteState extends State<CreateNote> {
 
   TextEditingController textController = TextEditingController();
 
-  void addtodo(NoteModel note) {
-    Box todobox = Hive.box("todo");
-    todobox.add(note);
-  }
-
   @override
   Widget build(BuildContext context) {
     List<Color> BoxColors = [OrangeColor, GreenColor, lightBlue, PinkColor];
@@ -39,8 +34,8 @@ class _CreateNoteState extends State<CreateNote> {
     }
 
     return Container(
-      height: Getproprateheight(265),
-      width: Getpropratewidth(335),
+      height: GetHeight(265),
+      width: Getwidth(335),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Container(
@@ -54,8 +49,8 @@ class _CreateNoteState extends State<CreateNote> {
                 Expanded(
                   flex: 4,
                   child: Container(
-                    width: Getpropratewidth(100),
-                    height: Getproprateheight(28),
+                    width: Getwidth(100),
+                    height: GetHeight(28),
                     child: TextField(
                       controller: titleController,
                       decoration: InputDecoration(
@@ -67,8 +62,8 @@ class _CreateNoteState extends State<CreateNote> {
                 ),
                 Expanded(
                   child: Container(
-                    height: Getproprateheight(18),
-                    width: Getpropratewidth(65),
+                    height: GetHeight(18),
+                    width: Getwidth(65),
                     decoration: BoxDecoration(
                         color: SkyBlueTagColor,
                         borderRadius: BorderRadius.circular(10)),
@@ -84,12 +79,7 @@ class _CreateNoteState extends State<CreateNote> {
                                 content:
                                     Text("Title and Text cannot be empty")));
                           else {
-                            addtodo(NoteModel(
-                                title: titleController.text,
-                                date: DateTime.now(),
-                                Text: textController.text));
-
-                            prov.AddNotes(NoteModel(
+                            prov.addtodo(NoteModel(
                                 title: titleController.text,
                                 date: DateTime.now(),
                                 Text: textController.text));
@@ -104,7 +94,7 @@ class _CreateNoteState extends State<CreateNote> {
                           children: [
                             SvgPicture.asset("images/plus.svg"),
                             SizedBox(
-                              width: Getpropratewidth(3),
+                              width: Getwidth(3),
                             ),
                             Text(
                               "Save",
@@ -120,19 +110,19 @@ class _CreateNoteState extends State<CreateNote> {
               ],
             ),
             SizedBox(
-              height: Getproprateheight(12),
+              height: GetHeight(12),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  height: Getproprateheight(20),
-                  width: Getpropratewidth(70),
+                  height: GetHeight(20),
+                  width: Getwidth(70),
                   child: Row(
                     children: [
                       SvgPicture.asset("images/note.svg"),
                       SizedBox(
-                        width: Getproprateheight(4),
+                        width: GetHeight(4),
                       ),
                       Text(
                         "Simple",
@@ -148,16 +138,16 @@ class _CreateNoteState extends State<CreateNote> {
               ],
             ),
             SizedBox(
-              height: Getproprateheight(12),
+              height: GetHeight(12),
             ),
             Container(
-              height: Getproprateheight(20),
-              width: Getpropratewidth(70),
+              height: GetHeight(20),
+              width: Getwidth(70),
               child: Row(
                 children: [
                   SvgPicture.asset("images/checkbox.svg"),
                   SizedBox(
-                    width: Getproprateheight(4),
+                    width: GetHeight(4),
                   ),
                   Text(
                     "To-do",
@@ -169,16 +159,16 @@ class _CreateNoteState extends State<CreateNote> {
               ),
             ),
             SizedBox(
-              height: Getproprateheight(12),
+              height: GetHeight(12),
             ),
             Container(
-              height: Getproprateheight(20),
-              width: Getpropratewidth(70),
+              height: GetHeight(20),
+              width: Getwidth(70),
               child: Row(
                 children: [
                   SvgPicture.asset("images/bulletlist.svg"),
                   SizedBox(
-                    width: Getproprateheight(4),
+                    width: GetHeight(4),
                   ),
                   Text(
                     "Agenda",
@@ -238,8 +228,8 @@ class ColorsSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Getproprateheight(18),
-      width: Getpropratewidth(18),
+      height: GetHeight(18),
+      width: Getwidth(18),
       decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }

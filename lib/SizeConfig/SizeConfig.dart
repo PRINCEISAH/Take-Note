@@ -15,12 +15,12 @@ class SizeConfig {
   }
 }
 
-double Getproprateheight(double height) {
+double GetHeight(double height) {
   double screenheight = SizeConfig.screenheight;
   return (height / 812.0) * screenheight;
 }
 
-double Getpropratewidth(double width) {
+double Getwidth(double width) {
   double screenwidth = SizeConfig.screenWidth;
   return (width / 375.0) * screenwidth.toDouble();
 }

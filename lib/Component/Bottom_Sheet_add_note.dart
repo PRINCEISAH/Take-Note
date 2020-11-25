@@ -22,8 +22,8 @@ class BottomSheetAddNote extends StatelessWidget {
     return InkWell(
       onTap: () => ShowCreateDialog(),
       child: Container(
-        height: Getproprateheight(50),
-        width: Getpropratewidth(375),
+        height: GetHeight(50),
+        width: Getwidth(375),
         decoration: BoxDecoration(
           color: BlueColor,
           borderRadius: BorderRadius.only(
@@ -38,7 +38,7 @@ class BottomSheetAddNote extends StatelessWidget {
           children: [
             SvgPicture.asset("images/add.svg"),
             SizedBox(
-              width: Getpropratewidth(10),
+              width: Getwidth(10),
             ),
             Text(
               "New Note",
