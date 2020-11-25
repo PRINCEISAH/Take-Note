@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Color/Colors.dart';
 import 'package:todo/Component/FullCreatNote.dart';
@@ -18,6 +21,11 @@ class _CreateNoteState extends State<CreateNote> {
   TextEditingController titleController = TextEditingController();
 
   TextEditingController textController = TextEditingController();
+
+  void addtodo(NoteModel note) {
+    Box todobox = Hive.box("todo");
+    todobox.add(note);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,8 +84,12 @@ class _CreateNoteState extends State<CreateNote> {
                                 content:
                                     Text("Title and Text cannot be empty")));
                           else {
+                            addtodo(NoteModel(
+                                title: titleController.text,
+                                date: DateTime.now(),
+                                Text: textController.text));
+
                             prov.AddNotes(NoteModel(
-                                borderColor: Colors.green,
                                 title: titleController.text,
                                 date: DateTime.now(),
                                 Text: textController.text));
@@ -132,10 +144,7 @@ class _CreateNoteState extends State<CreateNote> {
                   ),
                 ),
                 InkWell(
-                    onTap: () {
-                      print("${prov.notes.length}");
-                    },
-                    child: SvgPicture.asset("images/clock.svg"))
+                    onTap: () {}, child: SvgPicture.asset("images/clock.svg"))
               ],
             ),
             SizedBox(

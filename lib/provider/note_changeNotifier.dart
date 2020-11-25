@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:todo/Model/model.dart';
 
 class Note_Change_Notifier extends ChangeNotifier {
-  List<NoteModel> _notes = [];
+  final Todobox = Hive.box("todo");
 
-  List<NoteModel> get notes => _notes;
-  void AddNotes(NoteModel model) {
-    _notes.add(model);
-  }
+  void AddNotes(NoteModel model) {}
 
   void deletNote(int index) {
-    _notes.removeAt(index);
+    Todobox.deleteAt(index);
     notifyListeners();
   }
 
-  void editNote(int index) {}
+  void editNote(int index, NoteModel note) {
+    Todobox.putAt(index, note);
+    print(Todobox.values);
+  }
 }

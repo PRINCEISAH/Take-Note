@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Color/Colors.dart';
 import 'package:todo/Component/Create_Note.dart';
@@ -14,13 +15,15 @@ import 'package:todo/widget/appbar.dart';
 class ViewFullNote extends StatelessWidget {
   final Text;
   final title;
-
-  const ViewFullNote({Key key, this.Text, this.title}) : super(key: key);
+  final int index;
+  const ViewFullNote({Key key, this.index, this.Text, this.title})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarTop(context),
       body: ViewFullNoteBody(
+        index: index,
         eText: Text,
         eTitle: title,
       ),
@@ -31,8 +34,9 @@ class ViewFullNote extends StatelessWidget {
 class ViewFullNoteBody extends StatefulWidget {
   final String eText;
   final String eTitle;
-
-  const ViewFullNoteBody({Key key, this.eText, this.eTitle}) : super(key: key);
+  final int index;
+  const ViewFullNoteBody({Key key, this.index, this.eText, this.eTitle})
+      : super(key: key);
 
   @override
   _ViewFullNoteBodyState createState() => _ViewFullNoteBodyState();
@@ -80,28 +84,26 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        height: Getproprateheight(20.77),
-                        width: Getpropratewidth(75),
-                        decoration: BoxDecoration(
-                            color: SkyBlueTagColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: InkWell(
-                            onTap: () {
-                              prov.AddNotes(NoteModel(
-                                  borderColor: Colors.green,
-                                  title: titleController.text,
+                      child: InkWell(
+                        onTap: () {
+                          prov.editNote(
+                              widget.index,
+                              NoteModel(
                                   date: DateTime.now(),
-                                  Text: textController.text));
+                                  title: "hello",
+                                  Text: "isah"));
+                          var box = Hive.box("todo");
+                          print(box.getAt(0).title);
 
-                              textController.clear();
-                              titleController.clear();
-                              Navigator.pop(context);
-                            },
+                          print(box.length);
+                        },
+                        child: Container(
+                          height: Getproprateheight(20.77),
+                          width: Getpropratewidth(75),
+                          decoration: BoxDecoration(
+                              color: SkyBlueTagColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: InkWell(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -129,28 +131,26 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: Getproprateheight(20),
-                      width: Getpropratewidth(70),
                       child: Row(
                         children: [
                           SvgPicture.asset("images/note.svg"),
                           SizedBox(
                             width: Getproprateheight(4),
                           ),
-                          Text(
-                            "Simple",
-                            style: GoogleFonts.karla(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromRGBO(138, 138, 138, 0.8)),
+                          Container(
+                            child: Text(
+                              "Simple",
+                              style: GoogleFonts.karla(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(138, 138, 138, 0.8)),
+                            ),
                           )
                         ],
                       ),
                     ),
                     InkWell(
-                        onTap: () {
-                          print("${prov.notes.length}");
-                        },
+                        onTap: () {},
                         child: SvgPicture.asset("images/clock.svg"))
                   ],
                 ),
@@ -159,7 +159,6 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                 ),
                 Container(
                   height: Getproprateheight(20),
-                  width: Getpropratewidth(70),
                   child: Row(
                     children: [
                       SvgPicture.asset("images/checkbox.svg"),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/Color/Colors.dart';
 import 'package:todo/SizeConfig/SizeConfig.dart';
@@ -58,10 +59,17 @@ class Note extends StatelessWidget {
             ),
           ),
           Spacer(),
-          Container(
-            height: Getproprateheight(19),
-            width: Getpropratewidth(52),
-            decoration: BoxDecoration(color: OrangeColor),
+          InkWell(
+            onTap: () {
+              Box todobox = Hive.box("todo");
+              print(todobox.length);
+              print(todobox.values);
+            },
+            child: Container(
+              height: Getproprateheight(19),
+              width: Getpropratewidth(52),
+              decoration: BoxDecoration(color: OrangeColor),
+            ),
           )
         ],
       ),

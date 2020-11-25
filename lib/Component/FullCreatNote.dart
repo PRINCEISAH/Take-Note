@@ -104,7 +104,6 @@ class _CreateFullNoteState extends State<CreateFullNote> {
                                     Text("Title and Text cannot be empty")));
                           else {
                             prov.AddNotes(NoteModel(
-                                borderColor: Colors.green,
                                 title: titleController.text,
                                 date: DateTime.now(),
                                 Text: textController.text));
@@ -160,10 +159,7 @@ class _CreateFullNoteState extends State<CreateFullNote> {
                   ),
                 ),
                 InkWell(
-                    onTap: () {
-                      print("${prov.notes.length}");
-                    },
-                    child: SvgPicture.asset("images/clock.svg"))
+                    onTap: () {}, child: SvgPicture.asset("images/clock.svg"))
               ],
             ),
             SizedBox(

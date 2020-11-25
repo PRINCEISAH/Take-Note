@@ -1,9 +1,20 @@
 import 'package:flutter/widgets.dart';
+import 'package:hive/hive.dart';
 
+part 'model.g.dart';
+
+@HiveType(typeId: 0)
 class NoteModel {
+  @HiveField(0)
   final title;
+  @HiveField(1)
   final Text;
-  final Color borderColor;
+  @HiveField(2)
   final DateTime date;
-  NoteModel({this.title, this.date, this.Text, this.borderColor});
+  @HiveField(3)
+  NoteModel({
+    this.title,
+    this.date,
+    this.Text,
+  });
 }
