@@ -9,8 +9,10 @@ class Note extends StatelessWidget {
   final String text;
   final String title;
   final Color color;
+  final String section;
   final dateTime;
-  const Note({Key key, this.dateTime, this.text, this.color, this.title})
+  const Note(
+      {Key key, this.section, this.dateTime, this.text, this.color, this.title})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

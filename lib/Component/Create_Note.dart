@@ -12,6 +12,9 @@ import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
 import 'package:intl/intl.dart';
 
+import '../Model/model.dart';
+import '../Model/model.dart';
+
 class CreateNote extends StatefulWidget {
   @override
   _CreateNoteState createState() => _CreateNoteState();
@@ -194,9 +197,6 @@ class _CreateNoteState extends State<CreateNote> {
                     children: List.generate(
                         BoxColors.length,
                         (index) => InkWell(
-                              onTap: () {
-                                print("$index");
-                              },
                               child: ColorsSelect(
                                 color: BoxColors[index],
                               ),

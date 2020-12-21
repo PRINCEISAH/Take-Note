@@ -10,7 +10,7 @@ class SearchBox extends StatelessWidget {
           color: SkyBlueColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        height: GetHeight(47),
+        height: GetHeight(60),
         width: Getwidth(335),
         child: TextField(
           maxLines: 10,

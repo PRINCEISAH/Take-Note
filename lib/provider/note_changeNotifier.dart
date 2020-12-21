@@ -1,6 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:todo/Model/model.dart';
+
+import '../Model/model.dart';
+import '../Model/model.dart';
+import '../Model/model.dart';
 
 class Note_Change_Notifier extends ChangeNotifier {
   final Todobox = Hive.box("todo");

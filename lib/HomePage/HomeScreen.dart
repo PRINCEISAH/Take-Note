@@ -16,6 +16,7 @@ import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
 
 import '../Color/Colors.dart';
+import '../Component/FullCreatNote.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -57,14 +58,6 @@ class Screen extends StatelessWidget {
                     Categories(),
                     SizedBox(
                       height: 20,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Note(
-                        title: "coreteam meeting",
-                        text: "with d lead and others",
-                        color: Colors.red,
-                      ),
                     ),
                     Column(
                       children: List.generate(
