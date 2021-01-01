@@ -89,6 +89,7 @@ class _CreateNoteState extends State<CreateNote> {
 
                             textController.clear();
                             titleController.clear();
+
                             Navigator.pop(context);
                           }
                         },
@@ -163,24 +164,6 @@ class _CreateNoteState extends State<CreateNote> {
             ),
             SizedBox(
               height: GetHeight(12),
-            ),
-            Container(
-              height: GetHeight(20),
-              width: Getwidth(70),
-              child: Row(
-                children: [
-                  SvgPicture.asset("images/bulletlist.svg"),
-                  SizedBox(
-                    width: GetHeight(4),
-                  ),
-                  Text(
-                    "Agenda",
-                    style: GoogleFonts.karla(
-                        fontSize: 14,
-                        color: Color.fromRGBO(138, 138, 138, 0.8)),
-                  )
-                ],
-              ),
             ),
             Container(
               child: TextField(

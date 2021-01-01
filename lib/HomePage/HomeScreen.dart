@@ -6,23 +6,38 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Color/Colors.dart';
+import 'package:todo/Component/Appbar.dart';
 import 'package:todo/Component/Bottom_Sheet_add_note.dart';
 import 'package:todo/Component/Categories.dart';
-import 'package:todo/Component/FullCreatNote.dart';
 import 'package:todo/Component/Note.dart';
 import 'package:todo/Component/ViewFullNote.dart';
-import 'package:todo/Component/searchBox.dart';
 import 'package:todo/SizeConfig/SizeConfig.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
 
 import '../Color/Colors.dart';
-import '../Component/FullCreatNote.dart';
 
-class HomeScreen extends StatelessWidget {
+final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
+      key: scaffoldkey,
+      drawer: Drawer(
+        child: Container(
+          child: Center(
+            child: Text('Coming soon'),
+          ),
+        ),
+      ),
+      appBar: HomeAppbar(),
       bottomSheet: BottomSheetAddNote(),
       backgroundColor: BackgroundColor,
       body: Screen(),
@@ -51,7 +66,6 @@ class Screen extends StatelessWidget {
                     SizedBox(
                       height: GetHeight(50),
                     ),
-                    SearchBox(),
                     SizedBox(
                       height: GetHeight(10),
                     ),

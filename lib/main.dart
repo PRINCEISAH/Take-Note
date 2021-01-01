@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/HomePage/HomeScreen.dart';
+import 'package:todo/SplashScreen/SplashScreen.dart';
 import 'package:todo/provider/note_changeNotifier.dart';
 import 'package:todo/watchboxtest.dart';
 import 'package:todo/Model/model.dart';
@@ -37,6 +38,6 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-        home: HomeScreen());
+        home: Splashscreen());
   }
 }

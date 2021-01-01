@@ -94,6 +94,10 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                                   title: titleController.text,
                                   Text: textController.text));
                           print("saved");
+
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("Saved"),
+                          ));
                         },
                         child: Container(
                           height: GetHeight(20.77),
@@ -135,7 +139,7 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                           ),
                           Container(
                             child: Text(
-                              "Simple",
+                              "Note",
                               style: GoogleFonts.karla(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
@@ -152,44 +156,6 @@ class _ViewFullNoteBodyState extends State<ViewFullNoteBody> {
                 ),
                 SizedBox(
                   height: GetHeight(12),
-                ),
-                Container(
-                  height: GetHeight(20),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset("images/checkbox.svg"),
-                      SizedBox(
-                        width: GetHeight(4),
-                      ),
-                      Text(
-                        "To-do",
-                        style: GoogleFonts.karla(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(138, 138, 138, 0.8)),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: GetHeight(12),
-                ),
-                Container(
-                  height: GetHeight(20),
-                  width: Getwidth(70),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset("images/bulletlist.svg"),
-                      SizedBox(
-                        width: GetHeight(4),
-                      ),
-                      Text("Agenda",
-                          style: GoogleFonts.karla(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromRGBO(138, 138, 138, 0.8)))
-                    ],
-                  ),
                 ),
                 SizedBox(
                   height: GetHeight(20),

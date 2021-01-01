@@ -14,7 +14,7 @@ class Categories extends StatelessWidget {
         width: Getwidth(321),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [AllCard(), ToDoCard(), AgendaCard()],
+          children: [AllCard(), NoteCard(), Lines()],
         ),
       ),
     );
@@ -28,7 +28,7 @@ class AllCard extends StatelessWidget {
         height: GetHeight(61),
         width: Getwidth(80),
         decoration: BoxDecoration(
-            color: OrangeColor, borderRadius: BorderRadius.circular(10)),
+            color: Colors.pink, borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
             Padding(
@@ -52,7 +52,7 @@ class AllCard extends StatelessWidget {
   }
 }
 
-class ToDoCard extends StatelessWidget {
+class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,7 +73,7 @@ class ToDoCard extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  "To-do",
+                  "Note",
                   style: GoogleFonts.karla(fontSize: 14),
                 ),
               ),
@@ -83,7 +83,7 @@ class ToDoCard extends StatelessWidget {
   }
 }
 
-class AgendaCard extends StatelessWidget {
+class Lines extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -104,7 +104,7 @@ class AgendaCard extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  "Agenda",
+                  "Lines",
                   style: GoogleFonts.karla(fontSize: 14),
                 ),
               ),

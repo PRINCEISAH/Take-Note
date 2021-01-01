@@ -25,13 +25,7 @@ class BottomSheetAddNote extends StatelessWidget {
         height: GetHeight(50),
         width: Getwidth(375),
         decoration: BoxDecoration(
-          color: BlueColor,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(10),
-            topLeft: Radius.circular(10),
-            bottomRight: Radius.circular(20),
-            bottomLeft: Radius.circular(20),
-          ),
+          color: Colors.pink,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
